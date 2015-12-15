@@ -1,0 +1,151 @@
+body 
+{
+    width: 700px;
+    margin: auto;
+}
+
+#largeImg
+{
+    border: solid 1px #ccc;
+    width: 520px;
+    height: 390px;
+    padding: 5px;
+}
+
+.small img 
+{
+    border: solid 1px #ccc;
+    width: 120px;
+    height: 90px;
+    padding: 4px;
+}
+
+.small a
+{
+    display: none;
+    z-index: 1;
+}
+
+.small label .left,
+.small label .right
+{
+    border: none;
+    width: 30px;
+    display: inline-block;
+    margin: auto;
+    z-index: 1;
+}
+
+.small #left,
+.small label .left
+{
+    position: absolute;
+    margin-left: -42px;
+}
+
+.small #right,
+.small label .right
+{
+    position: absolute;
+    margin-left: 533px;
+}
+
+.close,
+.big,
+input,
+#left:checked + label,
+#right:checked + label
+{
+    display: none;
+}
+
+#left:checked + label ~ .one,
+#right:checked + label ~ .two
+{
+    display: inline-block;
+}
+
+.click:focus ~ a .close
+{
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 6;
+    width: 50px;
+}
+
+.big
+{
+    display: block;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .7);
+
+    -webkit-transition: opacity 500ms ease-in;
+    -moz-transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.click:focus ~ .big
+{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.click:focus ~ .big img
+{
+    width: 55%;
+    position: fixed;
+    z-index: 6;
+    margin: auto;
+    padding: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.cross:focus,
+.cross:focus ~ .big
+{
+    display: none;
+}
+
+/*#prev,
+#next,
+label .prev,
+label .next
+{
+    position: absolute;
+    margin-top: 180px;
+    z-index: 7;
+    display: none;
+}
+
+#prev,
+label .prev
+{
+    margin-left: -600px;
+}
+
+#next,
+label .next
+{
+    margin-left: 185px;
+}
+
+.click:focus ~ label .prev,
+.click:focus ~ label .next
+{
+    display: inline-block;
+}
+*/

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Галерея</title>
+        <link rel="stylesheet" type="text/css" href="gallery.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript">            
+            $(document).ready(function() {
+                $("#largeImg").attr({src: "images\\clock1.gif"});
+                $(".small a img").each(function(i, element) {
+                    $(element).attr({src: "images\\clock.gif"});
+                });
+                setTimeout(function () {
+                    $(".small a").each(function(i, element) {
+                        var path = $(element).attr("href");
+                        if (i == 0) {
+                            $("#largeImg").attr({src: path});
+                        }
+                        $(element).find("img").attr({src: path});
+                    });
+                }, 4000);
+                $(".small a").click(function() {
+                    var largePath = $(this).attr("href");
+                    $("#largeImg").attr({src: largePath});
+                    $("#large").attr({src: largePath});
+                    return false;
+                });
+                $(document).keydown(function(e){
+                    var big = $("#large").attr("src");
+                    var current = null;
+                    var idx1 = 0;
+                    var idx2 = 0;
+                    var first = null;
+                    var second = null;
+                    $(".small a").each(function(i, element) {
+                        var src = $(element).attr("href");
+                        if (idx1 != 1 && src !== big) {
+                            first = $(element);
+                        }
+                        if (src === big) {
+                            current = $(element);
+                            idx1 = 1;
+                        }
+                        if (src !== big && idx2 != 1 && current != null) {
+                            second = $(element);
+                            idx2 = 1;
+                        }
+                    });
+                    if (e.which === 37) {
+                        if (first != null) {
+                            var path = $(first).attr("href");
+                            $("#large").attr({src: path});
+                        }
+                    }
+                    if (e.which === 39) {
+                        if (second != null) {
+                            var path = $(second).attr("href");
+                            $("#large").attr({src: path});
+                        }
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Галерея</h1>
+        <a href="images\1.jpg" class="click"><img id="largeImg" src="images\1.jpg"></a>
+        <!-- <input type="radio" name="neigh" id="prev">
+        <label for="prev">
+            <img src="images\arrow_left.png" class="prev">
+        </label>
+        <input type="radio" name="neigh" id="next">
+        <label for="next">
+            <img src="images\arrow_right.png" class="next">
+        </label> -->
+        <a href="" class="cross"><img src="images\red.png" class="close"></a>
+        <div class="small">
+            <input type="radio" name="arrow" id="left" checked>
+            <label for="left">
+                <img src="images\arrow_left.png" class="left">
+            </label>
+            <input type="radio" name="arrow" id="right">
+            <label for="right">
+                <img src="images\arrow_right.png" class="right">
+            </label>
+            <a href="images\1.jpg" class="one"><img src="images\1.jpg"></a>
+            <a href="images\2.jpg" class="one"><img src="images\2.jpg"></a>
+            <a href="images\3.jpg" class="one"><img src="images\3.jpg"></a>
+            <a href="images\4.jpg" class="one"><img src="images\4.jpg"></a>
+            <a href="images\5.jpg" class="two"><img src="images\5.jpg"></a>
+            <a href="images\6.jpg" class="two"><img src="images\6.jpg"></a>
+            <a href="images\7.jpeg" class="two"><img src="images\7.jpeg"></a>
+            <a href="images\8.jpg" class="two"><img src="images\8.jpg"></a>
+        </div>
+        <div class="big">
+            <img id="large" src="images\1.jpg">
+        </div>
+    </body>
+</html>
